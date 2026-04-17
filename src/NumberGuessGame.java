@@ -1,11 +1,11 @@
 import java.util.Scanner;
 import java.util.ArrayList;
-public class Game {
+public class NumberGuessGame {
     int guesses;
     int numToGuess;
     static Scanner sc = new Scanner(System.in);
 ArrayList<Integer> previousGuesses = new ArrayList<>();
-    Game(int low, int high) {
+    NumberGuessGame(int low, int high) {
       numToGuess = (int)(Math.random() * (high - low + 1) + low);
         
         System.out.println("I'm thinking of a number between " + low + " and " + high);
