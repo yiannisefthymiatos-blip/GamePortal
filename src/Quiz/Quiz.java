@@ -7,10 +7,21 @@ package Quiz;
  */
 import java.util.Scanner;
 
-public class Quiz {
+import Game.Game;
+
+public class Quiz implements Game {
         static Scanner sc = new Scanner(System.in);
 
-        public static void main(String[] args) throws Exception {
+        
+       @Override
+  public String getGameName(){
+return ("Weekend Warrior Quiz");
+  }
+        public void play() {
+
+                
+
+                
                 // Create Categories
                 Category gogetter = new Category("Go-Getter",
                                 "You are disciplined, driven, and focused");
@@ -169,8 +180,8 @@ public class Quiz {
                 System.out.println(cList[index].description);
 
         }
-
-        public static void gameIntro() {
+        
+        public void gameIntro() {
                 // requires 1 to keep going
                 System.out.println("What weekend warrior are you?");
                 System.out.println("You get to choose numbers 1-4 for every question. Enter '1' to play!");
@@ -199,5 +210,15 @@ public class Quiz {
                         }
                 }
                 return maxIndex;
+        }
+        @Override
+        public String getScore() {
+        return "n/a";
+        }
+        public static Scanner getSc() {
+                return sc;
+        }
+        public static void setSc(Scanner sc) {
+                Quiz.sc = sc;
         }
 }

@@ -1,6 +1,9 @@
 import java.util.Scanner;
+
+import Game.GameWriteable;
+
 import java.util.ArrayList;
-public class NumberGuessGame {
+public class NumberGuessGame implements GameWriteable {
     int guesses;
     int numToGuess;
     static Scanner sc = new Scanner(System.in);
@@ -12,38 +15,32 @@ ArrayList<Integer> previousGuesses = new ArrayList<>();
         // when we create a game, we get a random number between low to high.
         // assign numToGuess to that random number.
     }
-
-    void play() {
-
-     int guess=getGuess();
-       guesses++;
-      System.out.println(guesses);
-        // you can remove these println statements, they are just here for you to
-        // understand how we call this code.
-      
-        // gets the user guess by calling getGuess()
-        System.out.println("You guessed " + guess);
-
+    public String getGameName(){
+        return "numberguessgame";
+    }
 
     
 
-        if(guess < numToGuess){
-            System.out.println("The number is higher than " + guess);
-            play();
-        } else if(guess > numToGuess){
-            System.out.println("The number is lower than " + guess);
-            play();
+   public void play() {
 
-        } else {
+    while (true) {
+        int guess = getGuess();
+        guesses++;
+
+        System.out.println("You guessed " + guess);
+
+        if (guess < numToGuess) {
+            System.out.println("The number is higher than " + guess);
+        } 
+        else if (guess > numToGuess) {
+            System.out.println("The number is lower than " + guess);
+        } 
+        else {
             System.out.println("You guessed the number in " + guesses + " guesses!");
+            break; // 👈 THIS ends the game
         }
-       
-       
-        // When user guesses incorrectly, says whether the number is higher or lower.
-        // When user guesses correctly, finishes the game and tells them how many
-        // guesses they had.
-        
     }
+}
 
     int getGuess() {
         int guess;
@@ -68,10 +65,26 @@ if (previousGuesses.contains(guess)){
         // input.
         
     }
+    @Override
+   public boolean isHighScore(String score, String currentHighScore){
+   if (currentHighScore == null){
+    return true;
+   }
+    try {
+        int newScore = Integer.parseInt(score);
+        int oldScore = Integer.parseInt(currentHighScore);
+    
+    return newScore < oldScore;
+   }
+catch (NumberFormatException e) {
+    return false;
+}
+   }
 
-    int getNumGuesses() {
-        return guesses;
 
-    }
-   
+public String getScore(){
+return String.valueOf(guesses);
+}
+
+       
 }

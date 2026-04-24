@@ -37,7 +37,6 @@ public class GamePortal {
     public static void loadGames() {
         games.clear();
         games.add(new NumberGuessGame(1, 100));
-        games.add(new StoreGame());
         games.add(new Quiz());
     }
 
